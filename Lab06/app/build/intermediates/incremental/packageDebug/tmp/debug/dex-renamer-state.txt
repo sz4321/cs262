@@ -1,0 +1,4 @@
+#Mon Oct 14 19:31:10 EDT 2019
+base.0=/home/stz4/cs262/Lab06/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

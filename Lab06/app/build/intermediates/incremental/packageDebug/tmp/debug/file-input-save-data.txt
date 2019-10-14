@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Mon Oct 14 19:31:10 EDT 2019
+0.baseType=DIRECTORY
+0.base=/home/stz4/cs262/Lab06/app/build/intermediates/transforms/dexMerger/debug/0
+0.path=classes.dex
+0.set=DEX
+count=1
