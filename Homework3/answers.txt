@@ -1,0 +1,9 @@
+One of the basic elements of RESTful is to use HTTP methods. Homework 4 doesn’t use HTTP which means that it isn’t RESTful interface. 
+
+Homework 3 isn’t RESTful either because, although it fulfils the 3 elements of RESTful interface, it doesn’t return JASON or XML. It returns the full HTML. As a result, it is stateless.
+
+idempotent -> GET, PUT, DELETE
+Idempotent -> Read, Update, Delete
+Nullipotent -> POST
+Nullipotent -> Create
+
