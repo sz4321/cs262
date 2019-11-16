@@ -1,0 +1,57 @@
+Homework 1
+	MainActivity.java - changes that I made
+		Changing variables - operator - to a local variable 
+		The JavaDoc docmentation
+
+	MainActivity.java - changes that I didn't make
+		It recommended that I make some variables need to be local, when they actually needed global
+		Non legitimate JavaDoc documentation
+		Unused declaration - which are actually used 
+
+	activity_main.xml - changes that I made
+		provide hint for EditText
+		use SP insted of DP
+		use string instead of hardcoded string
+		Typos
+
+	activity_main.xml - changes that I didn't make
+		autofillHints recommended - but not needed for a caculator 
+		Non legitimate JavaDoc documentation
+
+
+Homework 2
+	MainActivity.java - changes that I made
+		Using string resource instead of hardcode
+		making a variable private
+		adding final to a variable  
+
+	MainActivity.java - changes that i didn't make 
+		Redundant variable, but it isn't
+
+
+	NetworkUtils.java - changes that I made
+		typos 
+
+	NetworkUtils.java - changes that I didn't make
+		return in a finally block - but it needs to be there for our purposes
+		unused assignment 
+
+	URLLoader.java - changes that I made
+		make variables final
+
+Homework3
+
+	MainActivity.java and other modules- changes that I made
+		making local variables
+		making variables final
+		javaDoc
+
+	MainActivity.java and other modules- changes that I made
+		Redundant variable, but it isn't
+		
+
+
+
+
+
+
