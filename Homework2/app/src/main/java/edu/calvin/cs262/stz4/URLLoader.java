@@ -5,6 +5,9 @@ import android.content.Context;
 import androidx.annotation.Nullable;
 import androidx.loader.content.AsyncTaskLoader;
 
+/**
+ * AsyncTaskLoader for the URLLoader 
+ */
 class URLLoader extends AsyncTaskLoader<String> {
 
     private final String mURLString;

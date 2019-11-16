@@ -9,8 +9,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Network utilities
+ */
 public class NetworkUtils {
 
+    /**
+     * get the URL information
+     * @param urlString
+     * @return
+     */
     static String getURLInfo(String urlString) {
         HttpURLConnection urlConnection_1 = null;
         BufferedReader reader = null;

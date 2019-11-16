@@ -17,6 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
+/**
+ * MainActivity class
+ *
+ */
 public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<String> {
 
@@ -39,6 +43,11 @@ public class MainActivity extends AppCompatActivity
         showURL = findViewById(R.id.textView2);
     }
 
+    /**
+     * Searches for the URL
+     * @return void
+     * @param view
+     */
     public void searchURL(View view) {
         //convert the entry to string
         String queryString = enterURL.getText().toString();
