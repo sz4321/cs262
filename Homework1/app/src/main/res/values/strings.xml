@@ -3,6 +3,10 @@
     <string name="value_2_entry">Value 2:</string>
     <string name="value_1_entry">Value 1:</string>
     <string name="operator_entry">Operator</string>
+    <string name="calulate">Calulate</string>
+    <string name="calculate">Calculate</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
     <string-array name="operators">
         <item>+</item>
         <item>-</item>
