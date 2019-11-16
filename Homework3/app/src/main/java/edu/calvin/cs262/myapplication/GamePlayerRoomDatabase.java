@@ -2,7 +2,6 @@ package edu.calvin.cs262.myapplication;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -11,14 +10,24 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
-@Database(entities = {Player.class, Game.class,  GamePlayer.class}, version = 3, exportSchema = false)
+@Database(entities = {Player.class, Game.class, GamePlayer.class}, version = 3, exportSchema = false)
 public abstract class GamePlayerRoomDatabase extends RoomDatabase {
-    public abstract GamePlayerDao gamePlayerDao();
-    public abstract GameDao gameDao();
-    public abstract PlayerDao playerDao();
     private static GamePlayerRoomDatabase INSTANCE;
+    private static RoomDatabase.Callback sRoomDatabaseCallback =
+            new RoomDatabase.Callback() {
 
+                @Override
+                public void onOpen(@NonNull SupportSQLiteDatabase db) {
+                    super.onOpen(db);
+                    new PopulateDbAsync(INSTANCE).execute();
+                }
+            };
 
+    /**
+     * get database for gamePlayer
+     * @param context
+     * @return
+     */
     static GamePlayerRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (GamePlayerRoomDatabase.class) {
@@ -37,15 +46,11 @@ public abstract class GamePlayerRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback =
-            new RoomDatabase.Callback(){
+    public abstract GamePlayerDao gamePlayerDao();
 
-                @Override
-                public void onOpen (@NonNull SupportSQLiteDatabase db){
-                    super.onOpen(db);
-                    new PopulateDbAsync(INSTANCE).execute();
-                }
-            };
+    public abstract GameDao gameDao();
+
+    public abstract PlayerDao playerDao();
 
     /**
      * Populate the database in the background.

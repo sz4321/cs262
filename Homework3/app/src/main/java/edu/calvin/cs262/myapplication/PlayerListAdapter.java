@@ -15,14 +15,27 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
     private final LayoutInflater mInflater;
     private List<Player> mPlayers; //copy of players
 
-    PlayerListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    PlayerListAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
+    }
 
+    /**
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public PlayerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
         return new PlayerViewHolder(itemView);
     }
 
+    /**
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(PlayerViewHolder holder, int position) {
         if (mPlayers != null) {
@@ -33,11 +46,15 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
 
         } else {
             // Covers the case of data not being ready yet.
-            holder.playerItemView.setText("No Player");
+            holder.playerItemView.setText(R.string.no_player);
         }
     }
 
-    void setPlayers(List<Player> players){
+    /**
+     *
+     * @param players
+     */
+    void setPlayers(List<Player> players) {
         mPlayers = players;
         notifyDataSetChanged();
     }
@@ -51,6 +68,16 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
         else return 0;
     }
 
+    /**
+     *
+     * @param position
+     * @return
+     */
+    public Player getPlayerAtPosition(int position) {
+        return mPlayers.get(position);
+    }
+
+
     class PlayerViewHolder extends RecyclerView.ViewHolder {
         private final TextView playerItemView;
 
@@ -58,10 +85,6 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
             super(itemView);
             playerItemView = itemView.findViewById(R.id.textView);
         }
-    }
-
-    public Player getPlayerAtPosition (int position) {
-        return mPlayers.get(position);
     }
 
 }

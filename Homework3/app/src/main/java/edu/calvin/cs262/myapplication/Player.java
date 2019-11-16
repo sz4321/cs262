@@ -16,21 +16,27 @@ public class Player {
     @NonNull
     @ColumnInfo(name = "player_name")
     private String playerName;
-
-    public String getPlayerName(){ return this.playerName; }
     @NonNull
     @ColumnInfo(name = "email")
     private String email;
-    public String getEmail(){ return this.email; }
 
-
-    public Player(@NonNull Integer ID, @NonNull String playerName, @NonNull String email)
-    {
+    public Player(@NonNull Integer ID, @NonNull String playerName, @NonNull String email) {
         this.ID = ID;
         this.playerName = playerName;
         this.email = email;
     }
-    public Integer getID(){ return this.ID; }
+
+    public String getPlayerName() {
+        return this.playerName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public Integer getID() {
+        return this.ID;
+    }
 
 
 }

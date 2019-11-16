@@ -19,7 +19,7 @@ public interface PlayerDao {
     void deleteAll();
 
     @Query("SELECT * FROM player_table ORDER BY player_name ASC")
-    LiveData<List<Player> >getAllPlayers();
+    LiveData<List<Player>> getAllPlayers();
 
     @Query("SELECT * from player_table LIMIT 1")
     Player[] getAnyPlayer();

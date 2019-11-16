@@ -12,10 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class NewPlayerActivity extends AppCompatActivity {
 
+    public static final int NEW_PLAYER_ACTIVITY_REQUEST_CODE = 1;
     private EditText editName;
     private EditText editEmail;
     private EditText editID;
-    public static final int NEW_PLAYER_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class NewPlayerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent replyIntent = new Intent();
                 if (TextUtils.isEmpty(editName.getText()) ||
-                        TextUtils.isEmpty(editEmail.getText())||
+                        TextUtils.isEmpty(editEmail.getText()) ||
                         TextUtils.isEmpty(editID.getText())
                 ) {
                     setResult(RESULT_CANCELED, replyIntent);

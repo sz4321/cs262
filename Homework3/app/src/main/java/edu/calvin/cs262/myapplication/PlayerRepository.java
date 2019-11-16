@@ -11,8 +11,8 @@ public class PlayerRepository {
 
     // ------------------------------------------------------------------------------------------------------------
     //player
-    private PlayerDao mPlayerDao;
-    private LiveData<List<Player>> mAllPlayers;
+    private final PlayerDao mPlayerDao;
+    private final LiveData<List<Player>> mAllPlayers;
 
     PlayerRepository(Application application) {
         PlayerRoomDatabase db = PlayerRoomDatabase.getDatabase(application);
@@ -21,14 +21,28 @@ public class PlayerRepository {
     }
 
 
-
-    LiveData<List<Player>> getAllPlayers(){
+    LiveData<List<Player>> getAllPlayers() {
         return mAllPlayers;
     }
 
-    public void insert (Player player) {
+    public void insert(Player player) {
         new insertAsyncTask(mPlayerDao).execute(player);
     }
+
+    //also delete game
+    public void deleteAll() {
+        new deleteAllPlayersAsyncTask(mPlayerDao).execute();
+
+    }
+
+    /**
+     *
+     * @param word
+     */
+    public void deletePlayer(Player word) {
+        new deletePlayerAsyncTask(mPlayerDao).execute(word);
+    }
+
 
     private static class insertAsyncTask extends AsyncTask<Player, Void, Void> {
 
@@ -46,7 +60,7 @@ public class PlayerRepository {
     }
 
     private static class deleteAllPlayersAsyncTask extends AsyncTask<Void, Void, Void> {
-        private PlayerDao mAsyncTaskDao;
+        private final PlayerDao mAsyncTaskDao;
 
         deleteAllPlayersAsyncTask(PlayerDao dao) {
             mAsyncTaskDao = dao;
@@ -59,14 +73,8 @@ public class PlayerRepository {
         }
     }
 
-    //also delete game
-    public void deleteAll()  {
-        new deleteAllPlayersAsyncTask(mPlayerDao).execute();
-
-    }
-
     private static class deletePlayerAsyncTask extends AsyncTask<Player, Void, Void> {
-        private PlayerDao mAsyncTaskDao;
+        private final PlayerDao mAsyncTaskDao;
 
         deletePlayerAsyncTask(PlayerDao dao) {
             mAsyncTaskDao = dao;
@@ -78,11 +86,6 @@ public class PlayerRepository {
             return null;
         }
     }
-
-    public void deletePlayer(Player word)  {
-        new deletePlayerAsyncTask(mPlayerDao).execute(word);
-    }
-
 
 
 }

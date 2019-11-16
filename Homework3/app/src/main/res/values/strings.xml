@@ -7,5 +7,9 @@
     <string name="sebrina">Sebrina</string>
     <string name="_1">1</string>
     <string name="clear_all_data">Clear All Data</string>
+    <string name="no_player">No Player</string>
+    <string name="id">ID</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
 
 </resources>

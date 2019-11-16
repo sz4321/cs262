@@ -6,8 +6,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Time;
-
 @Entity(tableName = "game_table")
 public class Game {
 
@@ -15,6 +13,14 @@ public class Game {
     @NonNull
     @ColumnInfo(name = "ID")
     private Integer ID;
+    @NonNull
+    @ColumnInfo(name = "time_stamp")
+    private String timeStamp;
+
+    public Game(@NonNull Integer ID, @NonNull String timeStamp) {
+        this.ID = ID;
+        this.timeStamp = timeStamp;
+    }
 
     @NonNull
     public Integer getID() {
@@ -22,18 +28,8 @@ public class Game {
     }
 
     @NonNull
-    @ColumnInfo(name = "time_stamp")
-    private String timeStamp;
-
-    @NonNull
-    public String getTimeStamp(){
+    public String getTimeStamp() {
         return this.timeStamp;
-    }
-
-
-    public Game(@NonNull Integer ID, @NonNull String timeStamp){
-        this.ID = ID;
-        this.timeStamp = timeStamp;
     }
 
 }

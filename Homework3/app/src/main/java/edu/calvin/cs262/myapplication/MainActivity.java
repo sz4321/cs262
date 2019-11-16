@@ -2,9 +2,11 @@ package edu.calvin.cs262.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +17,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 import static edu.calvin.cs262.myapplication.NewPlayerActivity.NEW_PLAYER_ACTIVITY_REQUEST_CODE;
@@ -28,14 +26,13 @@ import static edu.calvin.cs262.myapplication.NewPlayerActivity.NEW_PLAYER_ACTIVI
 
 public class MainActivity extends AppCompatActivity {
     private PlayerViewModel mPlayerViewModel;
-    private PlayerViewModel mPlayerViewModel1;
-    private GameViewModel mGameViewModel;
-    private GamePlayerViewModel mGamePlayerViewModel;
-    private GamePlayerViewModel mGamePlayerViewModel1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        GameViewModel mGameViewModel;
+        GamePlayerViewModel mGamePlayerViewModel;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -136,11 +133,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_PLAYER_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Player player = new Player(Integer.parseInt(data.getStringExtra("ID")), data.getStringExtra("Name"), data.getStringExtra("Email"));
+            Player player = new Player(Integer.parseInt(data.getStringExtra(getString(R.string.id))),
+                    data.getStringExtra(getString(R.string.name)),
+                    data.getStringExtra(getString(R.string.email)));
             mPlayerViewModel.insert(player);
         } else {
             Toast.makeText(
@@ -150,8 +155,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -159,6 +167,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -172,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
 
             // Delete the existing data
-            mPlayerViewModel.deleteAll() ;
+            mPlayerViewModel.deleteAll();
             return true;
         }
 

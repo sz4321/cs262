@@ -13,15 +13,38 @@ public class PlayerViewModel extends AndroidViewModel {
     private LiveData<List<Player>> mAllPlayers;
 
 
-    public PlayerViewModel (Application application) {
+    /**
+     *
+     * @param application
+     */
+    public PlayerViewModel(Application application) {
         super(application);
         mRepository = new PlayerRepository(application);
         mAllPlayers = mRepository.getAllPlayers();
     }
 
-    LiveData<List<Player>> getAllPlayers() { return mAllPlayers; }
-    public void insert(Player player) { mRepository.insert(player); }
-    public void deleteAll() {mRepository.deleteAll();}
-    public void deletePlayer(Player word) {mRepository.deletePlayer(word);}
+    LiveData<List<Player>> getAllPlayers() {
+        return mAllPlayers;
+    }
+
+    /**
+     *
+     * @param player
+     */
+    public void insert(Player player) {
+        mRepository.insert(player);
+    }
+
+    public void deleteAll() {
+        mRepository.deleteAll();
+    }
+
+    /**
+     *
+     * @param word
+     */
+    public void deletePlayer(Player word) {
+        mRepository.deletePlayer(word);
+    }
 
 }
