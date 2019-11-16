@@ -11,12 +11,12 @@ import java.net.URL;
 
 public class NetworkUtils {
 
-    static String getURLInfo(String urlString){
+    static String getURLInfo(String urlString) {
         HttpURLConnection urlConnection_1 = null;
         BufferedReader reader = null;
-        String final_string = "";
+        String final_string;
 
-        try{
+        try {
 
             URL new_url = new URL(urlString);
             Log.e(NetworkUtils.class.getSimpleName(), new_url.toString());
@@ -33,7 +33,7 @@ public class NetworkUtils {
             //create a buffered reader from that input stream
             reader = new BufferedReader(new InputStreamReader(inputStream));
 
-            //Use a stringbuilder to hold the incoming response
+            //Use a string builder to hold the incoming response
             StringBuilder builder = new StringBuilder();
 
             //read the input line-by-line
@@ -51,7 +51,7 @@ public class NetworkUtils {
             }
 
 
-        } catch (IOException e){
+        } catch (IOException e) {
             return "error...";
         } finally {
             if (urlConnection_1 != null) {

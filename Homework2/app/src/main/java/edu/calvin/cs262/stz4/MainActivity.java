@@ -1,17 +1,9 @@
 package edu.calvin.cs262.stz4;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
-
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -19,15 +11,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 
 public class MainActivity extends AppCompatActivity
-    implements LoaderManager.LoaderCallbacks<String>{
+        implements LoaderManager.LoaderCallbacks<String> {
 
+    private final String[] protocols = {"http://", "https://"};
     private TextView showURL;
     private EditText enterURL;
-    String[] protocols = {"http://", "https://"};
     private Spinner protocol;
 
     @Override
@@ -35,7 +30,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        enterURL = (EditText)findViewById(R.id.editText);
+        enterURL = findViewById(R.id.editText);
 
         protocol = findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, protocols);
@@ -53,7 +48,7 @@ public class MainActivity extends AppCompatActivity
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        if (inputManager != null ) {
+        if (inputManager != null) {
             inputManager.hideSoftInputFromWindow(view.getWindowToken(),
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
@@ -72,12 +67,12 @@ public class MainActivity extends AppCompatActivity
             queryBundle.putString("queryString_1", protocol_url);
             getSupportLoaderManager().restartLoader(0, queryBundle, this);
 
-            showURL.setText("Loading...");
+            showURL.setText(R.string.loading);
         } else {
             if (queryString.length() == 0) {
                 showURL.setText("");
-            } else{
-                showURL.setText("Make sure you have internet connection.");
+            } else {
+                showURL.setText(R.string.make_sure_you_have_internet_connection);
             }
         }
     }
@@ -87,7 +82,7 @@ public class MainActivity extends AppCompatActivity
     //when you instantiate your loader
     public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
         String urlString = "";
-        if(args!= null){
+        if (args != null) {
             urlString = args.getString("queryString_1");
         }
         return new URLLoader(this, urlString);
@@ -97,9 +92,9 @@ public class MainActivity extends AppCompatActivity
     //called when loader's task is finished
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
         String sourceCode = data;
-        if(sourceCode != null) {
+        if (sourceCode != null) {
             showURL.setText(sourceCode);
-        } else{
+        } else {
             showURL.setText("");
         }
     }

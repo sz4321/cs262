@@ -7,9 +7,9 @@ import androidx.loader.content.AsyncTaskLoader;
 
 class URLLoader extends AsyncTaskLoader<String> {
 
-    private String mURLString;
+    private final String mURLString;
 
-    public URLLoader(Context context, String urlString){
+    public URLLoader(Context context, String urlString) {
         super(context);
         mURLString = urlString;
     }
